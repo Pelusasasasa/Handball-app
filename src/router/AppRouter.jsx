@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { AuthRoutes } from "../auth/routes/AuthRoutes"
+import { HandballRoutes } from "../handball/routes/HandballRoutes"
 
 export const AppRouter = () => {
   return (
@@ -8,7 +9,7 @@ export const AppRouter = () => {
         {/* Login Y Registro */}
         <Route path="/auth/*" element={<AuthRoutes />}/>
 
-        {/* HandballApp */}
+        <Route path="/*" element={<HandballRoutes />}/>
         {/* <Route /> */}
     </Routes>
 
