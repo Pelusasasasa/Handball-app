@@ -5,10 +5,15 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { Google } from "@mui/icons-material";
 
 export const LoginPage = () => {
-  return (
-    <AuthLayout title="login">
 
-      <form >
+  const onSubmit = ( event ) => {
+    event.preventDefault();
+  };
+
+  return (
+    <AuthLayout title="Iniciar Sesion">
+
+      <form onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2}}>
             <TextField label='Correo' type="email" placeholder="correo@correo.com" fullWidth name="email" value='' />
