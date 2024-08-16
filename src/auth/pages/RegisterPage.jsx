@@ -1,6 +1,6 @@
 import {Link as RouterLink} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Grid, Link, TextField, Typography } from "@mui/material";
+import { Button, Grid, Link, TextField, Typography, Alert } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from '../../hooks/useForm';
 import { startCreatingUserWithEmailPassword } from '../../store/auth/thunks';
@@ -25,7 +25,7 @@ export const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const {status} = useSelector( state => state.auth);
+  const {status, errorMessage} = useSelector( state => state.auth);
   const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
 
   const onSubmit = ( event ) => {
@@ -52,7 +52,12 @@ export const RegisterPage = () => {
           </Grid>
 
           <Grid container sx={{ mt: 2}}>
-            <Button type="submit" variant="contained" disabled={isCheckingAuthentication} fullWidth>Crear Cuenta</Button>
+            <Grid item xs={12} sm={12} display={errorMessage ? '' : 'none'}>
+              <Alert severity='error'>{errorMessage}</Alert>
+            </Grid>
+            <Grid item>
+              <Button type="submit" variant="contained" disabled={isCheckingAuthentication} fullWidth>Crear Cuenta</Button>
+            </Grid>
           </Grid>
 
           <Grid container sx={{ mt: 2}} direction={'row'} justifyContent={'end'}>
